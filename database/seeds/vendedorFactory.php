@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Vendedor;
+
 
 class vendedorFactory extends Seeder
 {
@@ -12,11 +12,14 @@ class vendedorFactory extends Seeder
      */
     public function run()
     {
-        Vendedor::create([
+        $vendedores = factory(App\Models\Vendedor::class, 5)
+        ->create()
+        ->each(function ($vendedor){
+            $vendedor->facturas()->save(factory(App\Models\Factura::class)
+               ->make());
 
-        'antiguedad_vendedor' => 20, 
-
-
-        ])
+        });
     }
+
+
 }

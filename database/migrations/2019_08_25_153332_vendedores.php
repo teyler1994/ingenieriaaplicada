@@ -15,8 +15,11 @@ class Vendedores extends Migration
     {
         Schema::create('vendedores', function (Blueprint $table) {
             $table->increments('id');
-            $table->double('antigueda_vendedor');
+            $table->double('antiguedad_vendedor');
+            $table->json('especificaciones');
             $table->timestamps();
+
+
         });
     }
 
